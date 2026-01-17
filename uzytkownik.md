@@ -1,6 +1,6 @@
-#Diagram przypadków użycia
+# Diagram przypadków użycia
 
-##Wybor jezyka
+## Wybor jezyka
 
 ```mermaid
 flowchart TB
@@ -9,7 +9,7 @@ flowchart TB
    n2 --extend--> n5(["Wyświetlenie listy popularnych języków"])
    n1@{ shape: rect}
 ```
-###Szybki wybor rodzaju biletow
+### Szybki wybor rodzaju biletow
 
 ```mermaid	
 flowchart TB
