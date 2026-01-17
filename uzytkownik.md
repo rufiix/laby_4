@@ -1,6 +1,6 @@
-##Diagram przypadków użycia
+#Diagram przypadków użycia
 
-###Wybor jezyka
+##Wybor jezyka
 
 ```mermaid
 flowchart TB
