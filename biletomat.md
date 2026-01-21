@@ -28,3 +28,27 @@ flowchart TB
 
 ```
 
+##  Wyświetlenie podsumowania transakcji
+
+```mermaid
+
+flowchart TB
+    n1["Użytkownik"] --> n2(["Wyświetlenie podsumowania transakcji"])
+    n2 -- include --> n3(["Podsumowanie transakcji"])
+    n2 -- extend --> n5(["Obsługa anulowania transakcji przez użytkownika"])
+    n1@{ shape: rect}
+
+```
+
+##  Generowanie potwierdzenia zakupu
+
+```mermaid
+
+flowchart TB
+    n1["Użytkownik"] --> n2(["Generowanie potwierdzenia zakupu"])
+    n2 -- include --> n3(["Generowanie biletu"])
+    n2 -- extend --> n5(["Powiadomienie o błędzie generowania potwierdzenia"])
+    n1@{ shape: rect}
+
+```
+
