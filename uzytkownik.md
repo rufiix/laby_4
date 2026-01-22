@@ -69,3 +69,34 @@ sequenceDiagram
     end
 
 ```
+### Szybki wybor rodzaju biletow
+
+```mermaid	
+sequenceDiagram
+    autonumber
+    actor U as Użytkownik
+    participant S as Biletomat
+
+    U->>S: Rozpoczęcie interakcji
+
+    alt Ścieżka wyboru biletu
+        U->>S: Wybór kategorii biletu
+        
+        S->>S: Weryfikacja dostępnych biletów
+        
+        S-->>U: Wyświetlenie listy biletów z danej kategorii
+
+        opt Brak aktywności przez określony czas
+            S-->>U: Wyświetlenie podpowiedzi
+        end
+
+        U->>S: Wybór konkretnego biletu
+        S-->>U: Wyświetlenie podsumowania wyboru
+        U->>S: Potwierdzenie wyboru (Realizacja)
+
+    else Anulowanie transakcji
+        U->>S: Wybór opcji Anuluj
+        S->>S: Procedura anulowania
+        S-->>U: Powrót do ekranu startowego
+    end
+```
