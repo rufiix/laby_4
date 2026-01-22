@@ -102,15 +102,19 @@ sequenceDiagram
 ```
 ## Sprawdzenie poprawności transakcji
 ```mermaid
-actor A1 as Użytkownik
-  participant P1 as Interfejs sprzedaży biletu
-  autonumber
-  A1->>P1: wybierz_bilet_i_platnosc()
-  P1-->>A1: wyswietl_podsumowanie(typBiletu, cena, metodaPlatnosci)
-  alt uzytkownik chce kontynuowac
-    A1->>P1: potwierdz()
-    P1->>P1: kontunuuj()
-    else uzytkownik chce anulowac
-    A1->>P1: anuluj()
-    P1->>P1: przerwij()
+sequenceDiagram
+    autonumber
+    actor A1 as Użytkownik
+    participant P1 as Interfejs sprzedaży biletu
+    
+    A1->>P1: wybierz_bilet_i_platnosc()
+    P1-->>A1: wyswietl_podsumowanie(typBiletu, cena, metodaPlatnosci)
+    
+    alt Uzytkownik chce kontynuowac
+        A1->>P1: potwierdz()
+        P1->>P1: przetworz_transakcje()
+    else Uzytkownik chce anulowac
+        A1->>P1: anuluj()
+        P1->>P1: przerwij_sesje()
+    end
 ```
