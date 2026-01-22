@@ -40,3 +40,41 @@ flowchart TB
 
 
 ```
+### Diagramy Sekwencji
+### Wybor jezyka
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as Użytkownik
+    participant S as System (Biletomat)
+
+    Note over U, S: Krok 1: Rozpoczęcie interakcji
+    U->>S: Uruchamia biletomat
+
+    Note right of S: <<Include>> Ustawienie domyślnego języka
+    
+    opt <<Extend>> Opcjonalnie
+        Note right of S: Wyświetlenie listy popularnych języków
+    end
+
+    Note over U, S: Krok 2: Wyświetlenie opcji języka
+    S-->>U: Wyświetla ekran powitalny z opcjami wyboru
+
+    par Możliwe scenariusze
+        rect rgb(240, 248, 255)
+            Note over U, S: Krok 3 i 4: Wybór języka (Ścieżka główna)
+            U->>S: Wybiera preferowany język
+            S-->>U: Dostosowuje interfejs do wybranego języka
+        end
+    and
+        rect rgb(255, 240, 240)
+            Note over U, S: Krok 5: Anulowanie (w dowolnym momencie)
+            U->>S: Wybiera opcję "Anuluj"
+            Note right of S: <<Include>> Anulowanie transakcji
+            S-->>U: Przywraca stan początkowy / kończy pracę
+        end
+    end
+
+
+```
