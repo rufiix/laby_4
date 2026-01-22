@@ -29,7 +29,7 @@ flowchart TB
     n1@{ shape: rect}
 
 ```
-### Sprawdzenie poprawności transakcji
+### Otrzymanie potwierdzenia zakupu
 
 ```mermaid
 flowchart TB
@@ -38,5 +38,24 @@ flowchart TB
     n2 -- extend --> n5(["Wybór formy potwierdzenia (drukowany lub elektroniczny)"])
     n1@{ shape: rect}
 
+
+```
+
+# Diagramy sekwencji
+## Sprawdzenie poprawności transakcji
+```mermaid
+sequenceDiagram
+  actor A1 as Użytkownik
+  participant P1 as Interfejs sprzedaży biletu
+  autonumber
+  A1->>P1: wybierz_bilet_i_platnosc()
+  P1-->>A1: wyswietl_podsumowanie(typBiletu, cena, metodaPlatnosci)
+  alt uzytkownik chce kontynuowac
+    A1->>P1: potwierdz()
+    P1->>P1: kontunuuj()
+    else uzytkownik chce anulowac
+    A1->>P1: anuluj()
+    P1->>P1: przerwij()
+    end
 
 ```
