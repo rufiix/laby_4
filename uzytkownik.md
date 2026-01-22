@@ -40,3 +40,32 @@ flowchart TB
 
 
 ```
+### Diagramy Sekwencji
+### Wybor jezyka
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor U as Użytkownik
+    participant S as Biletomat
+
+    U->>S: Uruchamia biletomat
+    
+    S->>S: Ustawienie domyślnego języka
+    
+    opt Wyświetlenie listy popularnych języków
+        S->>S: Pobranie listy popularnych języków
+    end
+
+    S-->>U: Wyświetla ekran powitalny z opcjami
+
+    alt Wybór języka
+        U->>S: Wybiera preferowany język
+        S-->>U: Dostosowuje interfejs do języka
+    else Anulowanie transakcji
+        U->>S: Wybiera opcję Anuluj
+        S->>S: Procedura anulowania
+        S-->>U: Potwierdzenie anulowania / Ekran startowy
+    end
+
+```
