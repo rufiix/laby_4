@@ -127,10 +127,11 @@ sequenceDiagram
 
     A1->>P1: dokonaj_zakupu()
     P1->>P2: sprawdz_poprawnosc_danych_platnosci()
-  P2-->>P1:
-  P1->>P1: generuj_potwierdzenie()
-  P1-)A1: odbierz_potwierdzenie()
-  P1-)A1: wyswietl_komunikat_potwierdzenia_zakonczenia()
-  P1-->>A1:
+    P2-->>P1: wynik_autoryzacji (OK)
+    
+    P1->>P1: generuj_potwierdzenie()
+    
+    P1->>A1: wydaj_bilet_i_paragon()
+    P1-->>A1: wyswietl_komunikat_zakonczenia()
 
 ```
