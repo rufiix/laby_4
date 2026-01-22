@@ -29,7 +29,7 @@ flowchart TB
     n1@{ shape: rect}
 
 ```
-### Sprawdzenie poprawności transakcji
+### Otrzymanie potwierdzenia zakupu
 
 ```mermaid
 flowchart TB
@@ -40,63 +40,22 @@ flowchart TB
 
 
 ```
-### Diagramy Sekwencji
-### Wybor jezyka
 
+# Diagramy sekwencji
+## Sprawdzenie poprawności transakcji
 ```mermaid
 sequenceDiagram
-    autonumber
-    actor U as Użytkownik
-    participant S as Biletomat
-
-    U->>S: Uruchamia biletomat
-    
-    S->>S: Ustawienie domyślnego języka
-    
-    opt Wyświetlenie listy popularnych języków
-        S->>S: Pobranie listy popularnych języków
+  actor A1 as Użytkownik
+  participant P1 as Interfejs sprzedaży biletu
+  autonumber
+  A1->>P1: wybierz_bilet_i_platnosc()
+  P1-->>A1: wyswietl_podsumowanie(typBiletu, cena, metodaPlatnosci)
+  alt uzytkownik chce kontynuowac
+    A1->>P1: potwierdz()
+    P1->>P1: kontunuuj()
+    else uzytkownik chce anulowac
+    A1->>P1: anuluj()
+    P1->>P1: przerwij()
     end
 
-    S-->>U: Wyświetla ekran powitalny z opcjami
-
-    alt Wybór języka
-        U->>S: Wybiera preferowany język
-        S-->>U: Dostosowuje interfejs do języka
-    else Anulowanie transakcji
-        U->>S: Wybiera opcję Anuluj
-        S->>S: Procedura anulowania
-        S-->>U: Potwierdzenie anulowania / Ekran startowy
-    end
-
-```
-### Szybki wybor rodzaju biletow
-
-```mermaid	
-sequenceDiagram
-    autonumber
-    actor U as Użytkownik
-    participant S as Biletomat
-
-    U->>S: Rozpoczęcie interakcji
-
-    alt Ścieżka wyboru biletu
-        U->>S: Wybór kategorii biletu
-        
-        S->>S: Weryfikacja dostępnych biletów
-        
-        S-->>U: Wyświetlenie listy biletów z danej kategorii
-
-        opt Brak aktywności przez określony czas
-            S-->>U: Wyświetlenie podpowiedzi
-        end
-
-        U->>S: Wybór konkretnego biletu
-        S-->>U: Wyświetlenie podsumowania wyboru
-        U->>S: Potwierdzenie wyboru (Realizacja)
-
-    else Anulowanie transakcji
-        U->>S: Wybór opcji Anuluj
-        S->>S: Procedura anulowania
-        S-->>U: Powrót do ekranu startowego
-    end
 ```
