@@ -118,3 +118,19 @@ sequenceDiagram
         P1->>P1: przerwij_sesje()
     end
 ```
+## Otrzymanie potwierdzenia zakupu
+```mermaid
+sequenceDiagram
+  actor A1 as Użytkownik
+  participant P1 as Interfejs sprzedaży biletu
+  participant P2 as Serwer autoryzacyjny
+
+    A1->>P1: dokonaj_zakupu()
+    P1->>P2: sprawdz_poprawnosc_danych_platnosci()
+  P2-->>P1:
+  P1->>P1: generuj_potwierdzenie()
+  P1-)A1: odbierz_potwierdzenie()
+  P1-)A1: wyswietl_komunikat_potwierdzenia_zakonczenia()
+  P1-->>A1:
+
+```
