@@ -19,4 +19,24 @@ flowchart TB
 czas)"])
     n1@{ shape: rect}
 ```
+### Sprawdzenie poprawności transakcji
 
+```mermaid
+flowchart TB
+    n1["Użytkownik"] --> n2(["Sprawdzenie poprawności transakcji"])
+    n2 -- include --> n3(["Wyświetlenie podsumowania transakcji"]) & n4(["Anulowanie transakcji"])
+    n2 -- extend --> n5(["Ostrzeżenie o błędnym wyborze (gdy wykryto błąd)"])
+    n1@{ shape: rect}
+
+```
+### Sprawdzenie poprawności transakcji
+
+```mermaid
+flowchart TB
+    n1["Użytkownik"] --> n2(["Otrzymanie potwierdzenia zakupu"])
+    n2 -- include --> n3(["Generowanie biletu"]) & n4(["Anulowanie transakcji"])
+    n2 -- extend --> n5(["Wybór formy potwierdzenia (drukowany lub elektroniczny)"])
+    n1@{ shape: rect}
+
+
+```
