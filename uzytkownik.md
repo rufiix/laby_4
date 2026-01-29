@@ -220,7 +220,7 @@ classDiagram
     %% Relacje
     InterfejsSprzedazy "1" *-- "0..1" Transakcja : zarządza
     Transakcja ..> StatusTransakcji : posiada
-
+```
 ## Wizualizacja diagramu klas
 ```mermaid
 classDiagram
@@ -249,6 +249,7 @@ classDiagram
     Użytkownik-->Biletomat:ustawiaJezyk
 
 ```
+### Szybki wybor rodzaju biletow
 ```mermaid
 classDiagram
     class Użytkownik{
