@@ -135,6 +135,91 @@ sequenceDiagram
     P1-->>A1: wyswietl_komunikat_zakonczenia()
 
 ```
+### Diagramy Klas
+## Otrzymanie potwierdzenia zakupu
+```mermaid
+classDiagram
+    class InterfejsSprzedazy {
+        -Bilet aktualnyBilet
+        +dokonaj_zakupu(DanePlatnosci dane)
+        -generuj_potwierdzenie()
+        +wydaj_bilet_i_paragon() : Wydruk
+        +wyswietl_komunikat_zakonczenia()
+    }
+
+    class SerwerAutoryzacyjny {
+        +sprawdz_poprawnosc_danych_platnosci(DanePlatnosci dane) StatusAutoryzacji
+    }
+
+    class DanePlatnosci {
+        +String numerKarty
+        +String wlasciciel
+        +String kodCVV
+    }
+
+    class Bilet {
+        +String typ
+        +double cena
+        +String strefa
+    }
+
+    class Paragon {
+        +String idTransakcji
+        +Date data
+        +double kwota
+    }
+
+    class StatusAutoryzacji {
+        <<enumeration>>
+        ZATWIERDZONA
+        ODRZUCONA
+        BLAD_LACZNOSCI
+    }
+
+    %% Relacje
+    InterfejsSprzedazy ..> SerwerAutoryzacyjny : korzysta (use)
+    InterfejsSprzedazy ..> DanePlatnosci : przetwarza
+    InterfejsSprzedazy --> Bilet : zarządza
+    InterfejsSprzedazy ..> Paragon : tworzy
+    SerwerAutoryzacyjny ..> StatusAutoryzacji : zwraca
+```
+## Sprawdzenie poprawności transakcji
+```mermaid
+classDiagram
+    %% Główny kontroler interakcji
+    class InterfejsSprzedazy {
+        -Transakcja aktualnaTransakcja
+        
+        %% Metody wywoływane przez Użytkownika (Publiczne)
+        +wybierz_bilet_i_platnosc(typ, metoda)
+        +potwierdz()
+        +anuluj()
+        
+        %% Metody wewnętrzne / Wyjście do Użytkownika (Prywatne/Protected)
+        -wyswietl_podsumowanie()
+        -przetworz_transakcje()
+        -przerwij_sesje()
+    }
+
+    %% Klasa reprezentująca dane, które pojawiły się w parametrach
+    class Transakcja {
+        +String typBiletu
+        +double cena
+        +String metodaPlatnosci
+        +StatusTransakcji status
+    }
+
+    %% Opcjonalnie: Typ wyliczeniowy dla statusu (dla precyzji)
+    class StatusTransakcji {
+        <<enumeration>>
+        OCZEKUJE
+        ZATWIERDZONA
+        ANULOWANA
+    }
+
+    %% Relacje
+    InterfejsSprzedazy "1" *-- "0..1" Transakcja : zarządza
+    Transakcja ..> StatusTransakcji : posiada
 
 ## Wizualizacja diagramu klas
 ```mermaid
