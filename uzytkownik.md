@@ -227,6 +227,33 @@ classDiagram
     class Użytkownik{
         - String username
         + void uruchomBiletomat()
+        + void wybierzPreferowanyJezyk(jezyk: String)
+        + void wybierzOpcjeAnuluj()
+    }
+
+    class Biletomat{
+        - String wybranyJezyk
+        - int idSesji
+        - void ustawienieDomyslnegoJezyka()
+        + void wyswietlEkranPowitalnyZOpcjami()
+        + void dostosujInterfejsDoJezyka(wybranyJezyk: String)
+        - void uruchomProcedureAnulowania()
+	+ void potwierdzAnulowanie()
+    }
+    class Server{
+        - List listaPopularnychJezykow
+        + List pobierzListePopularnychJezykow()
+    }
+
+    Biletomat-->Server:zwracaDane
+    Użytkownik-->Biletomat:ustawiaJezyk
+
+```
+```mermaid
+classDiagram
+    class Użytkownik{
+        - String username
+        + void uruchomBiletomat()
         + void wybierzPreferowanyJezyk()
         + void wybierzOpcjeAnuluj()
     }
