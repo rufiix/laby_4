@@ -135,3 +135,31 @@ sequenceDiagram
     P1-->>A1: wyswietl_komunikat_zakonczenia()
 
 ```
+
+## Wizualizacja diagramu klas
+```mermaid
+classDiagram
+    class Użytkownik{
+        - String username
+        + void uruchomBiletomat()
+        + void wybierzPreferowanyJezyk()
+        + void wybierzOpcjeAnuluj()
+    }
+
+    class Biletomat{
+        - String wybranyJezyk
+        - String idSesji
+        - void ustawienieDomyslnegoJezyka()
+        + void wyswietlEkranPowitalnyZOpcjami()
+        + void dostosujInterfejsDoJezyka(wybranyJezyk: String)
+        - void uruchomProcedureAnulowania()
+    }
+    class Server{
+        - List listaPopularnychJezykow
+        + List pobierzListePopularnychJezykow()
+    }
+
+    Biletomat-->Server:pobieraDane
+    Użytkownik-->Biletomat:ustawiaJezyk
+
+```
